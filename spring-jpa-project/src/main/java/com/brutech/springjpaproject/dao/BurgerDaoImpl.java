@@ -2,6 +2,7 @@ package com.brutech.springjpaproject.dao;
 
 import com.brutech.springjpaproject.entity.Burger;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,22 +27,30 @@ public class BurgerDaoImpl implements BurgerDao {
 
     @Override
     public List<Burger> findAll() {
-        return null;
+        TypedQuery<Burger> query = entityManager
+                .createQuery("SELECT b FROM Burger b", Burger.class);
+        return query.getResultList();
     }
 
     @Override
     public List<Burger> findByPrice(Double price) {
-        return null;
+        TypedQuery<Burger> query = entityManager
+                .createQuery("SELECT b FROM Burger b WHERE b.price = :price", Burger.class);
+        return query.getResultList();
     }
 
     @Override
     public List<Burger> findByBreadType(String breadType) {
-        return null;
+        TypedQuery<Burger> query = entityManager
+                .createQuery("SELECT b FROM Burger b WHERE b.breadType = :breadType", Burger.class);
+        return query.getResultList();
     }
 
     @Override
     public List<Burger> findByContent(String content) {
-        return null;
+        TypedQuery<Burger> query = entityManager
+                .createQuery("SELECT b FROM Burger b WHERE b.contents = :content", Burger.class);
+        return query.getResultList();
     }
 
     @Override
